@@ -1,0 +1,15 @@
+*{
+    font-family: 'Kantumruy Pro', sans-serif !important;
+}
+.w-15{
+    width: 20px;
+}
+.box-add-edit{
+    width: 45%;
+}
+.choose-file{
+    cursor: pointer;
+}
+.form-control:focus , .form-select:focus{
+    box-shadow: none !important;
+}
