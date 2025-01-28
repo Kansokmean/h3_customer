@@ -6,20 +6,20 @@
           <RouterLink to="/" class="text-decoration-none fw-bold" :class="locale === 'km' ? 'h5' : 'h4'">{{ t('home.hero.title') }}</RouterLink>
           <p :class="locale === 'km' ? 'mt-1' : 'mt-0'">{{ t('home.hero.desc') }}</p>
         </div>
-        <div class="language">
+        <div class="language col-3 text-end">
           <button 
             type="button" 
-            class="btn kantumruy" 
-            :class="locale === 'km' ? 'btn-primary' : 'btn-outline-primary'" 
+            class="btn " 
+            :class="locale === 'km' ? 'btn-primary' : 'btn-lang'" 
             @click="setLanguage('km')">
-            <img src="@/assets/cambodia_flag.svg" class="w-15" alt=""> ភាសាខ្មែរ
+            <div class="d-flex"><img src="@/assets/cambodia_flag.svg" class="w-15" alt=""> <span class="d-none d-md-block">ភាសាខ្មែរ</span></div>
           </button>
           <button 
             type="button" 
-            class="btn kantumruy ms-2" 
-            :class="locale === 'en' ? 'btn-primary' : 'btn-outline-primary'" 
+            class="btn ms-2" 
+            :class="locale === 'en' ? 'btn-primary' : 'btn-lang'" 
             @click="setLanguage('en')">
-            <img src="@/assets/en_flag.svg" class="w-15" alt=""> English
+            <div class="d-flex"><img src="@/assets/en_flag.svg" class="w-15" alt=""> <span class="d-none d-md-block">English</span></div>
           </button>
         </div>
       </nav>

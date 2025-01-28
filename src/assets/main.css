@@ -13,3 +13,18 @@
 .form-control:focus , .form-select:focus{
     box-shadow: none !important;
 }
+/* .piont1{
+    width: 20px;
+    height: 20px;
+    background: black !important;
+} */
+.btn-lang{
+    border: 1px dashed blue !important;
+}
+.w-10{
+    width: 30px;
+    height: 30px;
+}
+.px-6{
+    padding: 0 100px;
+}

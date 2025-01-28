@@ -26,7 +26,7 @@
 <script setup>
 import { Modal } from 'bootstrap';
 import { onMounted } from 'vue';
-// import axios from 'axios';
+import axios from 'axios';
 import { useCustomerStore } from '@/stores/customer_store';
 
 const CustomerStore = useCustomerStore();
@@ -36,11 +36,10 @@ onMounted(() => {
 });
 
 const onclickDelete = () => {
-//    axios.get(`/api/students/destroy.php?id=${productStore.selectedId}`)
-//    .then((res) => {
-//        console.log(res);
-//        productStore.onloadProduct();
-//        productStore.mdl_delete.hide(); 
-//    })
+    axios.get(`/api/customers/destroy.php?id=${CustomerStore.selectedId}`)
+        .then(res => {
+            CustomerStore.onLoadCustomer()
+            CustomerStore.mdl_delete.hide()
+        })
 };
 </script>

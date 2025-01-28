@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia'
-// import axios from 'axios'
+import axios from 'axios'
 
 export const useCustomerStore = defineStore('customer_store', {
     state: () => ({
@@ -19,20 +19,19 @@ export const useCustomerStore = defineStore('customer_store', {
         vv: null,
         selectedId: 0,
         customers: [
-            {id: 1, fname: 'kan', lname: 'sokmean', gender: 'Male', branch: 'battambang', email: 'kansokmean@gmail.com'},
-            {id: 2, fname: 'kan', lname: 'sokmean', gender: 'female', branch: 'battambang', email: 'kansokmean@gmail.com'},
-            {id: 3, fname: 'kan', lname: 'sokmean', gender: 'Male', branch: 'battambang', email: 'kansokmean@gmail.com'},
+
         ],
         mdl_crop: null,
         mdl_delete: null,
         
     }),
     actions: {
-        // onLoadStudent() {
-        //     axios.get('/api/students/index.php')
-        //         .then((res) => {
-        //             this.students = res.data.data
-        //         })
-        // }
+        onLoadCustomer() {
+            axios.get('/api/customers/index.php')
+        .then((res) => {
+            this.customers = res.data.data;
+            console.log(res.data.data);
+        });
+        },
     }
 })
