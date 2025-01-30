@@ -88,7 +88,7 @@
                 }" :height="250" :width="250" />
                   <div class="position-absolute totalcus" :class="t('home.total')== `Total`? 'me-4':''">
                     <hr width="150px" class="bdt bg-black">
-                    <p class="total-label small" >{{t('home.total')}} {{ CustomerStore.totalCus }} {{t('home.people')}}</p>
+                    <p class="total-label small" :class="t('home.total')== `Total`? 'samller':''">{{t('home.total')}} {{ CustomerStore.totalCus }} {{t('home.people')}}</p>
                   </div>
               </div>
             </div>
