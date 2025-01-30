@@ -2,7 +2,7 @@
   <div class="container mt-4 pb-5">
     <div class="row">
       <div class="col-lg-5 m-auto p-4 bg-white rounded-2 shadow mb-2">
-        <h5 class="fw-bold">{{ CustomerStore.selectedId ? t('form.update') : t('form.add') }}{{t('form.customer')}}</h5>
+        <h5 class="fw-bold">{{ CustomerStore.selectedId ? t('form.update') : t('form.add') }}{{t('form.customer')}} <i class="bi bi-pencil-square fs-5"></i></h5>
         <p>{{ t('form.decForm') }}</p>
         <hr>
         <div class="row">
@@ -106,8 +106,8 @@ import { RouterLink } from 'vue-router';
 import { useRouter } from 'vue-router';
 const router = useRouter();
 import { useI18n } from 'vue-i18n';
-const { t } = useI18n();
-import { onMounted, computed } from 'vue';
+const {locale ,t } = useI18n();
+import { computed, watch } from 'vue';
 import { required, email, helpers } from '@vuelidate/validators'
 import useVuelidate from '@vuelidate/core'
 import { useCustomerStore } from '@/stores/customer_store';
@@ -116,43 +116,58 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 
 const CustomerStore = useCustomerStore();
-
 const rules = computed(() => ({
   fname: {
-    required: helpers.withMessage('Please enter first name.', required)
+    required: helpers.withMessage(t('form.pleaseEnterfname'), required),
   },
   lname: {
-    required: helpers.withMessage('Please enter last name.', required),
+    required: helpers.withMessage(t('form.pleaseEnterlname'), required),
   },
   gender: {
-    required: helpers.withMessage('Please enter gender.', required)
-  }
-  ,
+    required: helpers.withMessage(t('form.chooseGender'), required),
+  },
   branch: {
-    required: helpers.withMessage('Please enter branch.', required)
-  }
-  ,
+    required: helpers.withMessage(t('form.chooseBranch'), required),
+  },
   email: {
-    required: helpers.withMessage('Please enter email.', required),
-    email: helpers.withMessage('Invalid email.', email)
-  }
+    required: helpers.withMessage(t('form.enterEmail'), required),
+    email: helpers.withMessage(t('form.invalidEmail'), email),
+  },
 }))
+
+watch(locale, () => {
+  CustomerStore.vv = useVuelidate(rules, CustomerStore.frm);
+});
+
 CustomerStore.vv = useVuelidate(rules, CustomerStore.frm);
+
 const onChoseImg = () => {
   const fileInput = document.getElementById('file-img') as HTMLInputElement;
   fileInput.value = '';
   fileInput.click();
 }
 const onSelectedImg = (e) => {
-  if (e.currentTarget.files.length == 0) {
-    return;
+  if (e.currentTarget.files.length === 0) {
+    return; 
   }
-  const file = e.currentTarget.files[0];
-  CustomerStore.crop.img = URL.createObjectURL(file);
-  CustomerStore.mdl_crop.show();
-  console.log(file);
 
-}
+  const file = e.currentTarget.files[0]; 
+  const validExtensions = ['image/jpeg', 'image/png']; 
+
+  if (!validExtensions.includes(file.type)) {
+    Swal.fire({
+      icon: "error",
+      title: "Invalid File Type",
+      text: "Please select a PNG or JPEG image.",
+    });
+    return; 
+  }
+
+  CustomerStore.crop.img = URL.createObjectURL(file); 
+  CustomerStore.mdl_crop.show(); 
+  console.log(file); 
+};
+
 const clearPf = () => {
   CustomerStore.crop.avatar = '/src/assets/no_photo.jpg';
   CustomerStore.crop.blob = 'null'

@@ -11,7 +11,7 @@ export const en = {
         phnompenh: 'Phnom Penh',
         preyveng: 'Prey Veng',
         branch: 'Branch',
-        people: 'people',
+        people: 'people(s)',
         cusbybranch: 'Customer By Branch',
         totalcus: 'Total Customer',
         displayNumbersOfCus: 'Display numbers of all customer',
@@ -22,6 +22,7 @@ export const en = {
         action: 'Action',
         email: 'Email',
         gender: 'Gender',
+        total: 'Total',
         customer: 'Customer',
         id: 'ID',
 
@@ -48,6 +49,8 @@ export const en = {
         clear: 'Clear',
         chooseGender: 'Choose gender',
         chooseBranch: 'Choose branch',
+        pleaseEnterfname: 'Please enter first name.',
+        pleaseEnterlname: 'Please enter last name.'
 
     },
     modal: {

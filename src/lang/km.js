@@ -22,6 +22,7 @@ export const km = {
         action: 'មុខងារ',
         email: 'អ៊ីម៉ែល',
         gender: 'ភេទ',
+        total: 'សរុប',
         customer: 'អតិថិជន',
         id: 'អត្តលេខ',
 
@@ -47,6 +48,8 @@ export const km = {
         clear: 'សម្អាតទិន្ន័យ',
         chooseGender: 'ជ្រើសរើសភេទ',
         chooseBranch: 'ជ្រើសរើសសាខា',
+        pleaseEnterfname: 'សូមបញ្ចូលគោត្តនាម',
+        pleaseEnterlname: 'សូមបញ្ចូលនាមខ្លួន'
 
     },
     modal: {

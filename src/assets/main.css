@@ -43,3 +43,8 @@
     border-top: 1px dashed rgb(188, 188, 188) !important;
     
 }
+.totalcus{
+    position: absolute;
+    right: 55px;
+    bottom: 55px;
+}

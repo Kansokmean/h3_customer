@@ -30,6 +30,7 @@
                         usePointStyle: true,
                         pointStyle: 'circle',
                         font: {
+                          family: 'Kantumruy',
                           weight: '100'
                         },
                       }
@@ -37,7 +38,7 @@
                     tooltip: {
                       callbacks: {
                         label: function (context) {
-                          return context.label; // Display the label only
+                          return context.label; 
                         }
                       }
                     }
@@ -48,22 +49,21 @@
             </div>
           </div>
           <div class="col-lg-6 mt-4 mt-lg-0">
-            <div class="chart2 bg-white p-4 rounded-4">
+            <div class="chart2 bg-white p-4 rounded-4 position-relative">
               <h5 class="fw-bold"><i class="bi bi-gender-ambiguous"></i> {{ t('home.totalcus') }}</h5>
               <p>{{ t('home.displayNumbersOfCus') }}</p>
               <hr class="bdt bg-black">
               <div class="w-100 px-6 py-3">
 
-                <DoughnutChart :chart-data="{
+                <PieChart :chart-data="{
                   labels: [
                     `${t('home.male')} ${state.Round[0].data[0]} ${t('home.people')}`,
-                    `${t('home.female')} ${state.Round[0].data[1]} ${t('home.people')}`
+                    `${t('home.female')} ${state.Round[0].data[1]} ${t('home.people')}`,
                   ],
                   datasets: state.Round
                 }" :options="{
                   responsive: true,
                   maintainAspectRatio: false,
-                  cutout: '0%',
                   plugins: {
                     legend: {
                       display: true,
@@ -72,6 +72,7 @@
                         usePointStyle: true,
                         pointStyle: 'circle',
                         font: {
+                          family: 'Kantumruy',
                           weight: '100'
                         }
                       }
@@ -79,13 +80,16 @@
                     tooltip: {
                       callbacks: {
                         label: function (context) {
-                          return context.label; // Display only the label
+                          return context.label;
                         }
                       }
                     }
                   }
                 }" :height="250" :width="250" />
-
+                  <div class="position-absolute totalcus" :class="t('home.total')== `Total`? 'me-4':''">
+                    <hr width="150px" class="bdt bg-black">
+                    <p class="total-label small" >{{t('home.total')}} {{ CustomerStore.totalCus }} {{t('home.people')}}</p>
+                  </div>
               </div>
             </div>
           </div>
@@ -155,7 +159,9 @@
   </main>
   <ModalDelete />
 </template>
-
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Kantumruy:wght@100;400&display=swap');
+</style>
 <script setup>
 
 import { useCustomerStore } from '@/stores/customer_store.js';
@@ -166,14 +172,14 @@ const { t } = useI18n()
 
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
-import { DoughnutChart } from 'vue-chart-3';
+import { DoughnutChart, PieChart } from 'vue-chart-3';
 Chart.defaults.font.family = '"Bayon", serif';
 
 import { RouterLink } from 'vue-router';
 import ModalDelete from '@/components/ModalDelete.vue';
 onMounted(() => {
   CustomerStore.onLoadCustomer();
-  CustomerStore.onLoadBranch();
+  CustomerStore.onLoadCountData();
 });
 const state = reactive({
   Donut:

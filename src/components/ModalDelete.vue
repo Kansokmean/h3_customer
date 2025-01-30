@@ -40,6 +40,7 @@ const onclickDelete = () => {
     axios.get(`/api/customers/destroy.php?id=${CustomerStore.selectedId}`)
         .then(res => {
             CustomerStore.onLoadCustomer()
+            CustomerStore.onLoadCountData()
             CustomerStore.mdl_delete.hide()
         })
         CustomerStore.frm.lname = '';
