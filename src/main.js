@@ -2,6 +2,7 @@ import './assets/main.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-icons/font/bootstrap-icons.min.css'
 import '@fontsource/kantumruy-pro';
+import 'sweetalert2/dist/sweetalert2.min.css';
 import { createI18n } from 'vue-i18n';
 
 import { createApp } from 'vue'
@@ -15,8 +16,8 @@ import {en} from '@/lang/en'
 import {km} from '@/lang/km'
 const i18n = createI18n({
     legacy: false,
-    locale: localStorage.getItem('lang') ? localStorage.getItem('lang') : 'en',
-    fallbackLocale: 'en',
+    locale: localStorage.getItem('lang') ? localStorage.getItem('lang') : 'km',
+    fallbackLocale: 'km',
     messages: {
         en: en,
         km: km

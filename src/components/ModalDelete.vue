@@ -7,16 +7,16 @@
                        <div class="box-del-icon mb-2">
                            <i class="bi bi-exclamation-triangle-fill text-danger fs-3"></i>
                        </div>
-                       <h5>លុបផលិតផល</h5>
+                       <h5>{{ t('modal.delete.deleteCus') }}</h5>
                    </div>
                    <div class="text-center m-auto subtext w-75 mt-3">
-                       <span class="text-danger fw-bold">រំលឹក!</span>
-                       <span> ផលិតផលនិងត្រូវលុបចេញជារៀងរហូត។ តើអ្នកពិតជាចង់លុបវាពិតឬទេ?</span>
+                       <span class="text-danger fw-bold">{{ t('modal.delete.areyousure') }}</span> <span class="fw-bold">{{ CustomerStore.frm.lname }}?</span><br>
+                       <span>&nbsp;{{ t('modal.delete.desc') }}</span>
                    </div>
                </div>
                <div class="modal-footer d-flex justify-content-center border-0">
-                   <button type="button" class="btn btn-outline-danger btn-mdl text-cancel fs-14 px-4" data-bs-dismiss="modal">ទេ, រក្សាទុក</button>
-                   <button type="button" class="btn btn-danger btn-mdl fs-14 px-4" @click="onclickDelete()">បាទ/ចាស, លុប</button>
+                   <button type="button" class="btn btn-outline-danger btn-mdl text-cancel fs-14 px-4" data-bs-dismiss="modal">{{ t('modal.delete.cancel') }}</button>
+                   <button type="button" class="btn btn-danger btn-mdl fs-14 px-4" @click="onclickDelete()">{{ t('modal.delete.confirm') }}</button>
                </div>
            </div>
        </div>
@@ -28,7 +28,8 @@ import { Modal } from 'bootstrap';
 import { onMounted } from 'vue';
 import axios from 'axios';
 import { useCustomerStore } from '@/stores/customer_store';
-
+import { useI18n } from 'vue-i18n';
+const {t} = useI18n()
 const CustomerStore = useCustomerStore();
 
 onMounted(() => {
@@ -41,5 +42,6 @@ const onclickDelete = () => {
             CustomerStore.onLoadCustomer()
             CustomerStore.mdl_delete.hide()
         })
+        CustomerStore.frm.lname = '';
 };
 </script>

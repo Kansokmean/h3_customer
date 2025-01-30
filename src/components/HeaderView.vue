@@ -3,8 +3,8 @@
     <div class="container">
       <nav class="d-flex justify-content-between pt-3">
         <div class="border-start border-5 lh-1 ps-4 border-primary">
-          <RouterLink to="/" class="text-decoration-none fw-bold" :class="locale === 'km' ? 'h5' : 'h4'">{{ t('home.hero.title') }}</RouterLink>
-          <p :class="locale === 'km' ? 'mt-1' : 'mt-0'">{{ t('home.hero.desc') }}</p>
+          <RouterLink to="/" class="text-decoration-none fw-bold" :class="locale === 'km' ? 'h5' : 'h4'">{{ t('header.title') }}</RouterLink>
+          <p :class="locale === 'km' ? 'mt-1' : 'mt-0'">{{ t('header.desc') }}</p>
         </div>
         <div class="language col-3 text-end">
           <button 
@@ -30,7 +30,6 @@
 <script setup>
 import { RouterLink } from 'vue-router';
 import { useI18n } from 'vue-i18n';
-
 const {t} = useI18n()
 
 const { locale } = useI18n();

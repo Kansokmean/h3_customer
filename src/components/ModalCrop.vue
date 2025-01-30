@@ -3,20 +3,20 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Crop Image</h5>
+                    <h5 class="modal-title fw-bold" id="exampleModalLabel">{{ t('modal.crop.cropImg') }}</h5>
                     <button class="btn btn-close p-1" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" style="height: 400px;">
                     <Cropper :src="CustomerStore.crop.img" :stencil-props="{ aspectRatio: 1 }" @change="onChangeCrop" />
                 </div>
                 <div class="modal-footer d-flex justify-content-between">
-                    <button class="btn btn-outline-primary" type="button" data-bs-dismiss="modal"><i class="bi bi-arrow-left-circle"></i> Cancel</button>
+                    <button class="btn btn-outline-primary" type="button" data-bs-dismiss="modal"><i class="bi bi-arrow-left-circle"></i> {{ t('modal.crop.back') }}</button>
                     <div>
                         <a role="button" class="choose-file btn btn-outline-primary me-3" @click="onChoseImg()">
                             <i class="bi bi-upload"></i>
-                            Choose</a>
+                            {{ t('modal.crop.choose') }}</a>
                         <input id="file-img" type="file" class="d-none" @change="onSelectedImg($event)">
-                        <button class="btn btn-primary" type="button" @click="onCropped"><i class="bi bi-check-circle"></i> Crop image</button>
+                        <button class="btn btn-primary" type="button" @click="onCropped"><i class="bi bi-crop"></i> {{ t('modal.crop.cropImg') }}</button>
                     </div>
                 </div>
             </div>
@@ -30,7 +30,8 @@ import { useCustomerStore } from '@/stores/customer_store';
 import { Cropper } from 'vue-advanced-cropper';
 import 'vue-advanced-cropper/dist/style.css';
 import 'vue-advanced-cropper/dist/theme.compact.css';
-
+import { useI18n } from 'vue-i18n';
+const {t} = useI18n()
 const CustomerStore = useCustomerStore();
 
 let tempCanvas;
